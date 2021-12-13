@@ -20,7 +20,7 @@ function getMoviesFromDirector(array, director) {
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
   directorMovies = array.filter(movies => movies.director == director);
-  averageScore = [];
+  //averageScore = [];
 
   moviesScore = directorMovies.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.score;
@@ -69,14 +69,14 @@ function orderByYear(array) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array,genre) {
-  averageScore = [];
-  genreMovies = array.filter(movies => movies.genre == genre & movies.score > 0);
+  //averageScore = [];
+  genreMovies = array.filter(movies => movies.genre == genre && movies.score > 0);
 
   moviesScore = genreMovies.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.score;
   }, 0);
 
-  averageScore = moviesScore/directorMovies.length
+  averageScore = moviesScore/genreMovies.length
 
   let result = Number(Number(averageScore).toFixed(2));
   //console.log(genreMovies);
@@ -88,7 +88,7 @@ function moviesAverageByCategory(array,genre) {
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(movies) {
-  moviesMinutes = [];
+  //moviesMinutes = [];
   function string2Minutes(strtime) {
     let min = '';
     let hour = '';
@@ -120,18 +120,25 @@ function hoursToMinutes(movies) {
 
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear(array,year) {
-  filmsYear = []
+  //filmsYear = []
   filmsYear = array.filter(movies => movies.year == year );
+
 // var maxA = a.reduce((a,b)=>a.y>b.y?a:b).y;
-  let filMaxScore = filmsYear.reduce((a, b) => (a.score > b.score) ? a : b);
-  let filmYearMaxScore = filmsYear.filter(movies =>  movies.score == filMaxScore);
-  //let filmsYearOrderScore = filmsYear.sort((a, b) => (a.score > b.score));
+//let filMaxScore = filmsYear.reduce((a, b) => (a.score - b.score) ? a : b);
+//let filmYearMaxScore = filmsYear.filter(movies =>  movies.score == filMaxScore);
+//let filmsYearOrderScore = filmsYear.sort((a, b) => (a.score > b.score));
+// var maxB = a.sort((a,b)=>b.y-a.y)[0].y;
+let bestFilmYearScore = filmsYear.sort((a, b) => b.score - a.score );
+//console.log("bestFilmYearScore= " + bestFilmYearScore.title);
+  //console.log("max score film is: "+ filMaxScore.title);
+console.log(bestFilmYearScore[0].score);
+let bestScore = bestFilmYearScore[0].score
+let bestFilmYears = filmsYear.filter(movies => movies.score == bestScore );
 
-  console.log(filmsYear);
-  console.log("max score film is: "+ filMaxScore.title);
-  //console.log(filmsYearOrderScore[0]);
+ //let result = filmYearMaxScore;
+ //let result = filmsYearOrderScore[0];
+ let result =  bestFilmYears;
 
-  let result = filmYearMaxScore;
 
   console.log("EXERCICE 8->", result);
   return result;
